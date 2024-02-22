@@ -1,11 +1,12 @@
 package com.cne.cargafood.jpa;
 
+import com.cne.cargafood.domain.repository.CozinhaRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
-import com.cne.cargafood.CargafoodApiApplication;
-import com.cne.cargafood.domain.entity.Cozinha;
+import com.cne.cargafood.app.CargafoodApiApplication;
+import com.cne.cargafood.domain.model.Cozinha;
 
 public class BuscaCozinhaMain {
 
@@ -14,9 +15,9 @@ public class BuscaCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 		
-		Cozinha cozinha = cadastroCozinha.buscar(1L);
+		Cozinha cozinha = cozinhaRepository.buscar(1L);
 		
 		System.out.println(cozinha.getNome());
 	}

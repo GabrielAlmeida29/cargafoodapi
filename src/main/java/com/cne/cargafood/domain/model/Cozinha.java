@@ -1,4 +1,4 @@
-package com.cne.cargafood.domain.entity;
+package com.cne.cargafood.domain.model;
 
 import java.util.Objects;
 

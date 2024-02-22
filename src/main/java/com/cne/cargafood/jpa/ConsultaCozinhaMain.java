@@ -2,12 +2,13 @@ package com.cne.cargafood.jpa;
 
 import java.util.List;
 
+import com.cne.cargafood.domain.repository.CozinhaRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
-import com.cne.cargafood.CargafoodApiApplication;
-import com.cne.cargafood.domain.entity.Cozinha;
+import com.cne.cargafood.app.CargafoodApiApplication;
+import com.cne.cargafood.domain.model.Cozinha;
 
 public class ConsultaCozinhaMain {
 
@@ -15,12 +16,12 @@ public class ConsultaCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(CargafoodApiApplication.class)
 				.web(WebApplicationType.NONE)
 				.run(args);
+
+		CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		List<Cozinha> todasCozinhas = cozinhas.todas();
 		
-		List<Cozinha> cozinhas = cadastroCozinha.listar();
-		
-		for(Cozinha cozinha : cozinhas) {
+		for(Cozinha cozinha : todasCozinhas) {
 			System.out.println(cozinha.getNome());
 		}
 	}
